@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Thomas (Borui) Zhang — Electrical and Computer Engineering student at Shanghai Jiao Tong University.">
+<meta name="theme-color" content="#fafaf8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1316" media="(prefers-color-scheme: dark)">
+<title>Thomas Zhang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+  :root{
+    --paper:#fafaf8;
+    --ink:#161a1e;
+    --muted:#5e686f;
+    --rule:#d9dee2;
+    --tile:#eef1f2;
+    --accent:#0e5b5b;
+    --accent-soft:#b7d3d2;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0f1316;
+      --ink:#e7eaec;
+      --muted:#98a3aa;
+      --rule:#2a3237;
+      --tile:#161c20;
+      --accent:#7fc9c6;
+      --accent-soft:#2c4a49;
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0f1316;
+    --ink:#e7eaec;
+    --muted:#98a3aa;
+    --rule:#2a3237;
+    --tile:#161c20;
+    --accent:#7fc9c6;
+    --accent-soft:#2c4a49;
+    color-scheme:dark;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Source Serif 4","Noto Serif SC",Georgia,"Times New Roman","SimSun",serif;
+    font-size:17px;
+    line-height:1.55;
+    font-optical-sizing:auto;
+    -webkit-font-smoothing:antialiased;
+  }
+  [hidden]{display:none!important}
+  img{max-width:100%}
+  a{
+    color:var(--accent);
+    text-decoration:underline;
+    text-decoration-color:var(--accent-soft);
+    text-decoration-thickness:1px;
+    text-underline-offset:.18em;
+    transition:text-decoration-color .15s ease;
+  }
+  a:hover{text-decoration-color:var(--accent)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+  .page{
+    max-width:880px;
+    margin:0 auto;
+    padding-block:56px 72px;
+    padding-inline:max(20px,env(safe-area-inset-left,0px)) max(20px,env(safe-area-inset-right,0px));
+  }
+
+  /* Hero */
+  .hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:44px;align-items:start}
+  h1{
+    margin:0;
+    font-size:clamp(2.3rem,5.4vw,3.2rem);
+    line-height:1.04;
+    font-weight:600;
+    letter-spacing:-.025em;
+    text-wrap:balance;
+  }
+  h1 .alt{
+    display:block;
+    margin-top:.36rem;
+    font-size:.34em;
+    line-height:1.3;
+    letter-spacing:.02em;
+    font-weight:400;
+    color:var(--muted);
+  }
+  .role{margin:.95rem 0 0;font-size:1.02rem}
+  .affil{margin:.18rem 0 0;color:var(--muted);font-size:.92rem}
+
+  .contact{
+    margin:22px 0 0;
+    padding:0;
+    display:grid;
+    gap:3px;
+    font-family:"IBM Plex Mono",Consolas,"Courier New",monospace;
+    font-size:.76rem;
+    line-height:1.5;
+  }
+  .contact div{display:flex;gap:10px;min-width:0}
+  .contact dt{color:var(--muted);min-width:82px;flex:none}
+  .contact dd{margin:0;min-width:0;overflow-wrap:anywhere}
+
+  .lang-toggle{
+    margin-top:20px;
+    padding:5px 12px;
+    font-family:"IBM Plex Mono",Consolas,"Courier New",monospace;
+    font-size:.7rem;
+    letter-spacing:.06em;
+    color:var(--muted);
+    background:transparent;
+    border:1px solid var(--rule);
+    border-radius:999px;
+    cursor:pointer;
+  }
+  .lang-toggle:hover{color:var(--ink);border-color:var(--muted)}
+
+  /* Photo grid: contain, never crop */
+  .photos{display:grid;grid-template-columns:repeat(2,108px);gap:8px}
+  .photos figure{
+    margin:0;
+    aspect-ratio:3/4;
+    background:var(--tile);
+    border:1px solid var(--rule);
+    overflow:hidden;
+  }
+  .photos img{display:block;width:100%;height:100%;object-fit:contain}
+
+  /* Sections */
+  main{margin-top:54px}
+  section+section{margin-top:42px}
+  h2{
+    margin:0 0 20px;
+    padding-bottom:8px;
+    border-bottom:1px solid var(--rule);
+    font-size:1.18rem;
+    font-weight:600;
+    letter-spacing:-.005em;
+  }
+  .entry+.entry{margin-top:26px}
+  .entry-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px 24px;flex-wrap:wrap}
+  .entry h3{margin:0;font-size:1.02rem;font-weight:600;line-height:1.4}
+  .meta{
+    font-family:"IBM Plex Mono",Consolas,"Courier New",monospace;
+    font-size:.73rem;
+    color:var(--muted);
+    font-variant-numeric:tabular-nums;
+    white-space:nowrap;
+  }
+  .detail{margin:.35rem 0 0}
+  ul.dash{list-style:none;margin:.55rem 0 0;padding:0;display:grid;gap:.28rem}
+  ul.dash li{position:relative;padding-left:1.05em;overflow-wrap:anywhere}
+  ul.dash li::before{content:"–";position:absolute;left:0;color:var(--muted)}
+  .links{
+    margin:.65rem 0 0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:.35rem .9rem;
+    font-family:"IBM Plex Mono",Consolas,"Courier New",monospace;
+    font-size:.74rem;
+  }
+
+  /* Open-source list */
+  .projects{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+  .projects li{border-bottom:1px solid var(--rule)}
+  .projects a{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:10px 24px;
+    flex-wrap:wrap;
+    padding:13px 0;
+    text-decoration:none;
+  }
+  .projects .repo{font-size:.98rem;font-weight:600}
+  .projects .url{font-family:"IBM Plex Mono",Consolas,"Courier New",monospace;font-size:.72rem;color:var(--muted);overflow-wrap:anywhere}
+  .projects a:hover .repo{text-decoration:underline;text-underline-offset:.18em;text-decoration-color:var(--accent-soft)}
+
+  /* Skills */
+  .skills{margin:0;display:grid;grid-template-columns:170px minmax(0,1fr);gap:8px 24px}
+  .skills dt{font-family:"IBM Plex Mono",Consolas,"Courier New",monospace;font-size:.74rem;color:var(--muted);padding-top:.22em}
+  .skills dd{margin:0}
+
+  footer{
+    margin-top:58px;
+    padding-top:16px;
+    border-top:1px solid var(--rule);
+    display:flex;
+    justify-content:space-between;
+    gap:10px 24px;
+    flex-wrap:wrap;
+    font-family:"IBM Plex Mono",Consolas,"Courier New",monospace;
+    font-size:.7rem;
+    color:var(--muted);
+  }
+
+  @media (max-width:720px){
+    .page{padding-block:36px 56px}
+    .hero{grid-template-columns:1fr;gap:28px}
+    .photos{grid-template-columns:repeat(2,96px)}
+    h1{font-size:2.4rem}
+    .skills{grid-template-columns:1fr;gap:3px}
+    .skills dt{padding-top:12px}
+    .contact dt{min-width:72px}
+  }
+  @media (max-width:420px){
+    .photos{grid-template-columns:repeat(2,90px)}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;animation:none!important}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="hero">
+    <div class="identity">
+
+      <!-- English header -->
+      <div id="header-en">
+        <h1>Thomas <span>(Borui)</span> Zhang<span class="alt">张博睿</span></h1>
+        <p class="role">Electrical and Computer Engineering (ECE) · Sophomore</p>
+        <p class="affil">Shanghai Jiao Tong University — Global College</p>
+
+        <dl class="contact">
+          <div><dt>Email (SJTU)</dt><dd><a href="mailto:thomas_zhang@sjtu.edu.cn">thomas_zhang@sjtu.edu.cn</a></dd></div>
+          <div><dt>Email (QQ)</dt><dd><a href="mailto:1296695641@qq.com">1296695641@qq.com</a></dd></div>
+          <div><dt>Phone</dt><dd><a href="tel:+8617764005057">(+86) 177-6400-5057</a></dd></div>
+          <div><dt>WeChat</dt><dd>Thomas_Zhang0730</dd></div>
+          <div><dt>GitHub</dt><dd><a href="https://github.com/Thomas-Zhang07" target="_blank" rel="noopener">github.com/Thomas-Zhang07</a></dd></div>
+          <div><dt>CV</dt><dd><a href="assets/Thomas_Zhang_Resume_EN.pdf">Download PDF</a></dd></div>
+        </dl>
+
+        <button class="lang-toggle" type="button">中文</button>
+      </div>
+
+      <!-- Chinese header -->
+      <div id="header-zh" hidden>
+        <h1>张博睿<span class="alt">Borui (Thomas) Zhang</span></h1>
+        <p class="role">电子与计算机工程（ECE）· 大二</p>
+        <p class="affil">上海交通大学 · 浦江国际学院</p>
+
+        <dl class="contact">
+          <div><dt>邮箱（SJTU）</dt><dd><a href="mailto:thomas_zhang@sjtu.edu.cn">thomas_zhang@sjtu.edu.cn</a></dd></div>
+          <div><dt>邮箱（QQ）</dt><dd><a href="mailto:1296695641@qq.com">1296695641@qq.com</a></dd></div>
+          <div><dt>电话</dt><dd><a href="tel:+8617764005057">(+86) 177-6400-5057</a></dd></div>
+          <div><dt>微信</dt><dd>Thomas_Zhang0730</dd></div>
+          <div><dt>GitHub</dt><dd><a href="https://github.com/Thomas-Zhang07" target="_blank" rel="noopener">github.com/Thomas-Zhang07</a></dd></div>
+          <div><dt>简历</dt><dd><a href="assets/Thomas_Zhang_Resume_CN.pdf">下载 PDF</a></dd></div>
+        </dl>
+
+        <button class="lang-toggle" type="button">EN</button>
+      </div>
+
+    </div>
+
+    <div class="photos">
+      <figure><img src="assets/profile.jpg" alt="Portrait of Thomas Zhang"></figure>
+      <figure><img src="assets/header1.jpg" alt="Thomas outdoors wearing a hat"></figure>
+      <figure><img src="assets/header2.jpg" alt="Thomas by the water"></figure>
+      <figure><img src="assets/header3.jpg" alt="Thomas outdoors on a rock"></figure>
+    </div>
+  </header>
+
+  <main>
+    <!-- English content -->
+    <div id="main-en">
+
+      <section aria-labelledby="research-en">
+        <h2 id="research-en">Research Experience</h2>
+
+        <article class="entry">
+          <div class="entry-head">
+            <h3>PRP: FPGA-Based AI Power Supply (AI-DC) Design and Implementation</h3>
+          </div>
+          <ul class="dash">
+            <li>Implemented a PI controller on FPGA</li>
+            <li>Completed full control-circuit experiments</li>
+            <li>Implemented ADC sampling of power-supply data</li>
+          </ul>
+        </article>
+
+        <article class="entry">
+          <div class="entry-head">
+            <h3>RAPLab</h3>
+            <span class="meta">Advisor: Prof. Zhongqiang Ren</span>
+          </div>
+          <ul class="dash">
+            <li>Completed simulation and verification of exploration algorithms</li>
+            <li>Participated in real-robot configuration and debugging</li>
+          </ul>
+          <p class="links">
+            <a href="https://rap-lab.github.io/" target="_blank" rel="noopener">Lab page</a>
+            <a href="https://github.com/Thomas-Zhang07/ROS2_test" target="_blank" rel="noopener">ROS2_test repository</a>
+          </p>
+        </article>
+      </section>
+
+      <section aria-labelledby="awards-en">
+        <h2 id="awards-en">Awards</h2>
+        <article class="entry">
+          <div class="entry-head">
+            <h3>Freshman Award in Hello-HPC-1st</h3>
+            <span class="meta">2025 Fall</span>
+          </div>
+          <p class="detail">SJTU Official High-Performance Computing Competition</p>
+        </article>
+      </section>
+
+      <section aria-labelledby="projects-en">
+        <h2 id="projects-en">Open-Source Projects</h2>
+        <ul class="projects">
+          <li>
+            <a href="https://github.com/Thomas-Zhang07/ClaudeCodeCLI_remote" target="_blank" rel="noopener">
+              <span class="repo">ClaudeCodeCLI_remote</span>
+              <span class="url">github.com/Thomas-Zhang07/ClaudeCodeCLI_remote</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/Thomas-Zhang07/notebookRemote" target="_blank" rel="noopener">
+              <span class="repo">notebookRemote</span>
+              <span class="url">github.com/Thomas-Zhang07/notebookRemote</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/Thomas-Zhang07/AUtoVas-Auto_Canvas" target="_blank" rel="noopener">
+              <span class="repo">AUtoVas-Auto_Canvas</span>
+              <span class="url">github.com/Thomas-Zhang07/AUtoVas-Auto_Canvas</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="skills-en">
+        <h2 id="skills-en">Technical Skills</h2>
+        <dl class="skills">
+          <dt>Programming Languages</dt><dd>C++, Python, Elm, Vue, Verilog</dd>
+          <dt>Other Skills</dt><dd>Agile Development, LaTeX, Agentic Development</dd>
+        </dl>
+      </section>
+
+      <section aria-labelledby="languages-en">
+        <h2 id="languages-en">Language Skills</h2>
+        <dl class="skills">
+          <dt>IELTS</dt><dd>7.5 overall</dd>
+        </dl>
+      </section>
+
+    </div>
+
+    <!-- Chinese content -->
+    <div id="main-zh" hidden>
+
+      <section aria-labelledby="research-zh">
+        <h2 id="research-zh">科研经历</h2>
+
+        <article class="entry">
+          <div class="entry-head">
+            <h3>PRP：基于 FPGA 的人工智能电源（AI-DC）设计及实现</h3>
+          </div>
+          <ul class="dash">
+            <li>使用 FPGA 实现 PI 控制器</li>
+            <li>完成完整控制电路实验</li>
+            <li>实现电源数据的 ADC 采样</li>
+          </ul>
+        </article>
+
+        <article class="entry">
+          <div class="entry-head">
+            <h3>RAPLab</h3>
+            <span class="meta">导师：任中强</span>
+          </div>
+          <ul class="dash">
+            <li>完成探索算法的仿真与验证</li>
+            <li>参与实机配置与调试</li>
+          </ul>
+          <p class="links">
+            <a href="https://rap-lab.github.io/" target="_blank" rel="noopener">实验室主页</a>
+            <a href="https://github.com/Thomas-Zhang07/ROS2_test" target="_blank" rel="noopener">代码仓库</a>
+          </p>
+        </article>
+      </section>
+
+      <section aria-labelledby="awards-zh">
+        <h2 id="awards-zh">获奖情况</h2>
+        <article class="entry">
+          <div class="entry-head">
+            <h3>Hello-HPC-1st 新生特别奖</h3>
+            <span class="meta">2025 Fall</span>
+          </div>
+          <p class="detail">上海交通大学超算队官方比赛</p>
+        </article>
+      </section>
+
+      <section aria-labelledby="projects-zh">
+        <h2 id="projects-zh">开源项目</h2>
+        <ul class="projects">
+          <li>
+            <a href="https://github.com/Thomas-Zhang07/ClaudeCodeCLI_remote" target="_blank" rel="noopener">
+              <span class="repo">ClaudeCodeCLI_remote</span>
+              <span class="url">github.com/Thomas-Zhang07/ClaudeCodeCLI_remote</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/Thomas-Zhang07/notebookRemote" target="_blank" rel="noopener">
+              <span class="repo">notebookRemote</span>
+              <span class="url">github.com/Thomas-Zhang07/notebookRemote</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/Thomas-Zhang07/AUtoVas-Auto_Canvas" target="_blank" rel="noopener">
+              <span class="repo">AUtoVas-Auto_Canvas</span>
+              <span class="url">github.com/Thomas-Zhang07/AUtoVas-Auto_Canvas</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="skills-zh">
+        <h2 id="skills-zh">技术能力</h2>
+        <dl class="skills">
+          <dt>编程语言</dt><dd>C++, Python, Elm, Vue, Verilog</dd>
+          <dt>工程能力</dt><dd>Agile Development, LaTeX, Agentic Development</dd>
+        </dl>
+      </section>
+
+      <section aria-labelledby="languages-zh">
+        <h2 id="languages-zh">语言能力</h2>
+        <dl class="skills">
+          <dt>IELTS</dt><dd>总分 7.5（Overall）</dd>
+        </dl>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <span>Thomas (Borui) Zhang</span>
+    <span>Shanghai Jiao Tong University</span>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var headerEn = document.getElementById('header-en');
+  var headerZh = document.getElementById('header-zh');
+  var mainEn = document.getElementById('main-en');
+  var mainZh = document.getElementById('main-zh');
+  var buttons = document.querySelectorAll('.lang-toggle');
+  var lang = 'en';
+
+  try {
+    if (localStorage.getItem('tz-lang') === 'zh') lang = 'zh';
+  } catch (e) {}
+
+  function render() {
+    var zh = lang === 'zh';
+    headerEn.hidden = zh;
+    mainEn.hidden = zh;
+    headerZh.hidden = !zh;
+    mainZh.hidden = !zh;
+    document.documentElement.lang = zh ? 'zh-CN' : 'en';
+    buttons.forEach(function (b) {
+      b.textContent = zh ? 'EN' : '中文';
+      b.setAttribute('aria-label', zh ? 'Switch to English' : '切换到中文');
+    });
+  }
+
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () {
+      lang = lang === 'en' ? 'zh' : 'en';
+      try { localStorage.setItem('tz-lang', lang); } catch (e) {}
+      render();
+    });
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
