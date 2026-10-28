@@ -77,7 +77,7 @@
   }
 
   /* Hero */
-  .hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:44px;align-items:start}
+  .hero{display:block}
   h1{
     margin:0;
     font-size:clamp(2.3rem,5.4vw,3.2rem);
@@ -124,17 +124,6 @@
     cursor:pointer;
   }
   .lang-toggle:hover{color:var(--ink);border-color:var(--muted)}
-
-  /* Photo grid: contain, never crop */
-  .photos{display:grid;grid-template-columns:repeat(2,108px);gap:8px}
-  .photos figure{
-    margin:0;
-    aspect-ratio:3/4;
-    background:var(--tile);
-    border:1px solid var(--rule);
-    overflow:hidden;
-  }
-  .photos img{display:block;width:100%;height:100%;object-fit:contain}
 
   /* Sections */
   main{margin-top:54px}
@@ -206,15 +195,10 @@
 
   @media (max-width:720px){
     .page{padding-block:36px 56px}
-    .hero{grid-template-columns:1fr;gap:28px}
-    .photos{grid-template-columns:repeat(2,96px)}
     h1{font-size:2.4rem}
     .skills{grid-template-columns:1fr;gap:3px}
     .skills dt{padding-top:12px}
     .contact dt{min-width:72px}
-  }
-  @media (max-width:420px){
-    .photos{grid-template-columns:repeat(2,90px)}
   }
   @media (prefers-reduced-motion:reduce){
     *{transition:none!important;animation:none!important}
@@ -239,7 +223,6 @@
           <div><dt>Phone</dt><dd><a href="tel:+8617764005057">(+86) 177-6400-5057</a></dd></div>
           <div><dt>WeChat</dt><dd>Thomas_Zhang0730</dd></div>
           <div><dt>GitHub</dt><dd><a href="https://github.com/Thomas-Zhang07" target="_blank" rel="noopener">github.com/Thomas-Zhang07</a></dd></div>
-          <div><dt>CV</dt><dd><a href="assets/Thomas_Zhang_Resume_EN.pdf">Download PDF</a></dd></div>
         </dl>
 
         <button class="lang-toggle" type="button">中文</button>
@@ -257,19 +240,11 @@
           <div><dt>电话</dt><dd><a href="tel:+8617764005057">(+86) 177-6400-5057</a></dd></div>
           <div><dt>微信</dt><dd>Thomas_Zhang0730</dd></div>
           <div><dt>GitHub</dt><dd><a href="https://github.com/Thomas-Zhang07" target="_blank" rel="noopener">github.com/Thomas-Zhang07</a></dd></div>
-          <div><dt>简历</dt><dd><a href="assets/Thomas_Zhang_Resume_CN.pdf">下载 PDF</a></dd></div>
         </dl>
 
         <button class="lang-toggle" type="button">EN</button>
       </div>
 
-    </div>
-
-    <div class="photos">
-      <figure><img src="assets/profile.jpg" alt="Portrait of Thomas Zhang"></figure>
-      <figure><img src="assets/header1.jpg" alt="Thomas outdoors wearing a hat"></figure>
-      <figure><img src="assets/header2.jpg" alt="Thomas by the water"></figure>
-      <figure><img src="assets/header3.jpg" alt="Thomas outdoors on a rock"></figure>
     </div>
   </header>
 
